@@ -40,10 +40,18 @@ include('includes/admin-header.php');
                             </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>Baseball Category</td>
-                                    <td>Basketball Category</td>
-                                </tr>
+                            <?php
+                            $query = "SELECT * FROM categories";
+                            $select_all_categories_query=mysqli_query($connection,$query);
+                            while($row = mysqli_fetch_assoc($select_all_categories_query)){
+                                $cat_title = $row['cat_title'];
+                                $cat_id = $row['cat_id'];
+                                echo "<tr>";
+                                echo "<td>{$cat_id}</td>";
+                                echo "<td>{$cat_title}</td>";
+                                echo "</tr>";
+                            }
+                            ?>
                             </tbody>
                         </table>
                     </div>
