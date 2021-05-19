@@ -22,21 +22,7 @@ include('includes/admin-header.php');
                     </h1>
                     <div class = "col-xs-6">
                         <?php
-                            if(isset($_POST['submit'])){
-                                $cat_title = $_POST['cat_title'];
-                                if($cat_title == "" || empty($cat_title)){
-                                    echo "This field should not be empty";
-                                }else{
-                                    $query = "INSERT INTO categories (cat_title) ";
-                                    $query .="VALUE('{$cat_title}') ";
-
-                                    $create_category_query = mysqli_query($connection, $query);
-                                    if(!$create_category_query){
-                                        die("INSERT FAILED ". mysqli_error($connection));
-                                    }
-                                }
-
-                            }
+                        insert_categories();
                         ?>
 
                         <form action="" method="post">
@@ -48,6 +34,12 @@ include('includes/admin-header.php');
                                 <input class="btn btn-primary" type="submit" name="submit" value="Add Category">
                             </div>
                         </form>
+                        <?php
+                            if(isset($_GET['edit'])){
+                                $cat_id = $_GET['edit'];
+                                include "includes/update_categories.php";
+                            }
+                        ?>
                     </div>
                     <div class = "col-xs-6">
                         <table class="table table-bordered table-hover">
@@ -55,6 +47,7 @@ include('includes/admin-header.php');
                             <tr>
                                 <th>Id</th>
                                 <th>Category Title</th>
+                                <th></th>
                                 <th></th>
                             </tr>
                             </thead>
@@ -70,6 +63,7 @@ include('includes/admin-header.php');
                                 echo "<td>{$cat_id}</td>";
                                 echo "<td>{$cat_title}</td>";
                                 echo "<td><a href='categories.php?delete={$cat_id}'>Delete</a></td>";
+                                echo "<td><a href='categories.php?edit={$cat_id}'>Edit</a></td>";
                                 echo "</tr>";
                             }
                             ?>
