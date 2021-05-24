@@ -30,11 +30,6 @@
         echo "<td>$comment_id</td>";
         echo "<td>$comment_author</td>";
         echo "<td>$comment_content</td>";
-
-
-
-
-
         echo "<td>$comment_email</td>";
         echo "<td>$comment_status</td>";
         $query = "SELECT * FROM posts WHERE post_id = $comment_post_id";
@@ -42,8 +37,10 @@
         while($row = mysqli_fetch_assoc($select_post_id)) {
             $post_title = $row['post_title'];
             $post_id = $row['post_id'];
+
+            echo "<td><a href='../post.php?p_id=$post_id'> $post_title</a></td>";
         }
-        echo "<td>$post_title</td>";
+
 
         echo "<td>$comment_date</td>";
         echo "<td><a href='comments.php?source=edit_commnt&c_id={$comment_id}'>Approve</a> </td>";
