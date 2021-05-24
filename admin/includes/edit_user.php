@@ -37,12 +37,17 @@ if(isset($_POST['edit_user'])){
 
 //        move_uploaded_file($post_image_tmp,"../images/$post_image");
 
-    $query = "INSERT INTO users ";
-    $query .="(user_name, user_password, user_firstname, user_lastname, user_email, user_roll) ";
-    $query .="VALUES ('$user_name', '$user_password', '$user_firstname', '$user_lastname', '$user_email', '$user_roll')";
-    $create_user_query = mysqli_query($connection,$query);
-
-    confirm($create_user_query);
+    $query = "UPDATE users SET ";
+    $query .= "user_firstname = '{$user_firstname}', ";
+    $query .= "user_lastname ='{$user_lastname}', ";
+    $query .= "user_name ='{$user_name}', ";
+    $query .= "user_roll = '{$user_roll}', ";
+    $query .= "user_email = '{$user_email}', ";
+    $query .= "user_password = '{$user_password}' ";
+    $query .= "WHERE user_id = {$the_user_id}";
+    $update_query_result = mysqli_query($connection, $query);
+    confirm($update_query_result);
+    header("Location: users.php");
 }
 ?>
 <form action="" method="post" enctype="multipart/form-data">
