@@ -81,7 +81,23 @@ if(isset($_GET['p_id'])) {
             <option value=""></option>
         </select>
     </div>
+    <div class="form-group">
+        <label for="user_roll">User Role</label>
+        <select name="user_roll" id="user_roll">
+            <?php
+            $query = "SELECT * FROM users";
+            $select_all_users_query=mysqli_query($connection,$query);
+            confirm($select_all_users_query);
+            while($row = mysqli_fetch_assoc($select_all_users_query)) {
+                $user_id = $row['user_id'];
+                $user_roll = $row['user_roll'];
+                echo "<option value='{$user_id}'>{$user_roll}</option>";
+            }
 
+            ?>
+
+        </select>
+    </div>
     <div class="form-group">
         <label for="author">Post Author</label>
         <input value="<?php echo $post_author;?>" type="text" class="form-control" name="post_author">
