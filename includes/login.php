@@ -23,9 +23,7 @@
             $db_user_lastname = $row['user_lastname'];
             $db_user_roll = $row['user_roll'];
         }
-        if($user_name !== $db_user_name && $user_password !== $db_user_password ){
-            header("Location: ../index.php");
-        } else if($user_name == $db_user_name && $user_password == $db_user_password){
+        if($user_name === $db_user_name && $user_password === $db_user_password ){
             $_SESSION['user_name'] = $db_user_name;
             $_SESSION['user_firstname'] = $db_user_firstname;
             $_SESSION['user_lastname'] = $db_user_lastname;
