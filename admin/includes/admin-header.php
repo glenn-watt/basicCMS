@@ -2,6 +2,14 @@
     include "../includes/db.php";
     include "functions.php";
     session_start();
+
+    if(isset($_SESSION['user_roll'])){
+        if($_SESSION['user_roll'] !== 'admin'){
+            header("Location: ../index.php");
+        }
+    }else{
+        header("Location: ../index.php");
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
